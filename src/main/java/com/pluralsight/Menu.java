@@ -35,7 +35,7 @@ public class Menu {
                     System.out.println(Colors.GREEN + "===== Goodbye =====" + Colors.RESET);
                     return;
                 default:
-                    System.out.println(Colors.RED + "Invalid option" + Colors.RESET);
+                    System.out.println(Colors.RED + "Invalid option, Try Again" + Colors.RESET);
 
             }
 
@@ -69,3 +69,5 @@ public class Menu {
         System.out.println("Transaction saved.");
     }
 }
+
+

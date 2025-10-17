@@ -16,6 +16,7 @@ public class Ledger {
             System.out.println("D) Deposits");
             System.out.println("P) Payments");
             System.out.println("R) Reports");
+            System.out.println("B) Show Balance");
             System.out.println("H)" + Colors.YELLOW + " Home" + Colors.RESET);
             System.out.println("Chose an option:");
             String choice = scanner.nextLine().toUpperCase();
@@ -37,6 +38,9 @@ public class Ledger {
                     break;
                 case "R":
                     Reports.displayReports(Transactions);
+                    break;
+                case "B":
+                    BalanceManager.showBalance(Transactions);
                     break;
                 case "H":
                     return;
