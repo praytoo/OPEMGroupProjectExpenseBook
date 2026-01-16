@@ -66,7 +66,6 @@ public class Menu {
 
         Transactions.add(transaction);
         TransactionFileManager.saveTransaction(transaction);
-        System.out.println(transaction);
         System.out.println("Transaction saved.");
     }
 }
