@@ -12,6 +12,7 @@ public class Menu {
 
         while (true) {
 
+            DisplayLogo.displayLogo();
             System.out.println(Colors.CYAN + "\n==== HOME MENU ====" + Colors.RESET);
             System.out.println("D) Add Deposit");
             System.out.println("P) Make Payment (Debit)");
