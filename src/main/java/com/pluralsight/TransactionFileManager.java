@@ -33,23 +33,28 @@ public class TransactionFileManager {
         return Transactions;
     }
 
-    public static void saveTransaction(Transaction transaction) {
-        try {
-            FileWriter writer = new FileWriter(FILE_NAME, true);
-            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+    public static void saveTransaction(double amount, String vendor, String description, boolean isDeposit) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
 
-            bufferedWriter.write(String.format("%s|%s|%s|%s|%.2f%n",
-                    transaction.getDate(),
-                    transaction.getTime(),
-                    transaction.getDescription(),
-                    transaction.getVendor(),
-                    transaction.getAmount()));
+            if (!isDeposit) {
+                amount = -amount;
+            }
 
-            bufferedWriter.close();
-            writer.close();
+            LocalDate date = LocalDate.now();
+            LocalTime time = LocalTime.now().withNano(0);
+
+            bufferedWriter.write(String.format(
+                    "%s|%s|%s|%s|%.2f%n",
+                    date,
+                    time,
+                    description,
+                    vendor,
+                    amount
+            ));
 
         } catch (IOException e) {
             System.out.println("Error saving transaction: " + e.getMessage());
         }
     }
+
 }
