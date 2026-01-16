@@ -25,44 +25,26 @@ public class Transaction {
         return Date;
     }
 
-    public void setDate(LocalDate date) {
-        this.Date = date;
-    }
-
     public LocalTime getTime() {
         return Time;
-    }
-
-    public void setTime(LocalTime time) {
-        this.Time = time;
     }
 
     public String getDescription() {
         return Description;
     }
 
-    public void setDescription(String description) {
-        this.Description = description;
-    }
-
     public String getVendor() {
         return Vendor;
     }
 
-    public void setVendor(String vendor) {
-        this.Vendor = vendor;
-    }
 
     public double getAmount() {
         return Amount;
-    }
-
-    public void setAmount(double amount) {
-        Amount = amount;
     }
 
     // @Override
     public String toString() {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         return Date + "|" + Time.format(timeFormatter) + "|" + Description + "|" + Vendor + "|" + Amount;
-    }}
+    }
+}
