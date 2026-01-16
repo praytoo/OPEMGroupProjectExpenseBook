@@ -47,10 +47,8 @@ public class Menu {
         String description = scanner.nextLine();
         System.out.println("Enter Vendor: ");
         String vendor = scanner.nextLine();
-        System.out.println("Enter amount: ");
-        double amount = scanner.nextDouble();
-        scanner.nextLine();
-
+        double amount = readDouble(scanner, "Enter the deposit amount: ");
+        amount = validateAmount(amount,true);
 
         if (!isDeposit) {
             amount *= -1; // negative for payment
@@ -67,6 +65,33 @@ public class Menu {
         Transactions.add(transaction);
         TransactionFileManager.saveTransaction(amount, vendor, description, true);
         System.out.println("Transaction saved.");
+    }
+
+    public static double readDouble(Scanner scanner1 , String message){
+        //keeps prompting until a valid input
+        while (true){
+            System.out.print(message);
+            String input = scanner1.nextLine();
+            try{
+                return Double.parseDouble(input);
+            }catch (NumberFormatException e){
+                System.out.println("❌ Invalid number! Please enter a valid value.");
+            }
+        }
+    }
+
+    //Validates amount to be positive or negative based on shouldBePositive.
+    public static double validateAmount(double amount, boolean shouldBePositive){
+        while (true){
+            if(shouldBePositive && amount > 0){//verifies if deposit and mount is not negative
+                return amount;
+            } else if (!shouldBePositive && amount < 0) {//verifies if payment and amount is not positive
+                return amount;
+            }else{
+                System.out.println(shouldBePositive?"❌ Invalid input. Please enter a positive amount. ":"❌ Invalid input. Please enter a negative amount. ");
+                amount = readDouble(scanner, "Enter amount again: ");;
+            }
+        }
     }
 }
 
